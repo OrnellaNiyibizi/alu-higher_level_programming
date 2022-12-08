@@ -65,8 +65,6 @@ class Rectangle(Base):
             raise ValueError("x has to be >= 0")
         self.__x = value
 
-
-
     @property
     def y(self):
         """get x"""
@@ -92,13 +90,10 @@ class Rectangle(Base):
         for i in range(self.height):
             print(' ' * self.x + '#' * self.width)
 
-
-
     def __str__(self):
         """define [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
         return "[Rectangle] ({}) {}/{} - {}/{}" \
             .format(self.id, self.x, self.y, self.width, self.height)
-    
 
     def update(self, *args, **kwargs):
         """give an argument"""
@@ -120,9 +115,7 @@ class Rectangle(Base):
             self.x = kwargs["x"] if "x" in kwargs else self.x
             self.y = kwargs["y"] if "y" in kwargs else self.y
 
-
-
-    def to_dictionary(self):
+     def to_dictionary(self):
         """the dictionary representation of a Rectangle"""
         return {
             'id': self.id,
