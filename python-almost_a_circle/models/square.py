@@ -1,12 +1,10 @@
 #!/usr/bin/python3
-"""Class square that inherit"""
+"""Class Square that inherit from Rectangle"""
 
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-
-
     """"
             Class Square inheriting Rectangle
             Attr :
@@ -21,24 +19,22 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """get size"""
+        """Size getter"""
         return self.width
-
-
 
     @size.setter
     def size(self, value):
-        """set size"""
+        """Size setter"""
         self.width = value
         self.height = value
 
     def __str__(self):
-        """state [Square] (<id>) <x>/<y> - <size>"""
+        """return [Square] (<id>) <x>/<y> - <size>"""
         return "[Square] ({}) {}/{} - {}" \
             .format(self.id, self.x, self.y, self.size)
 
     def update(self, *args, **kwargs):
-        """give attributes"""
+        """assigns attributes"""
         if len(args) != 0:
             try:
                 self.id = args[0]
@@ -55,5 +51,5 @@ class Square(Rectangle):
             self.y = kwargs["y"] if "y" in kwargs else self.y
 
     def to_dictionary(self):
-        """the dictionary representation of a Rectangle"""
+        """returns the dictionary representation of a Rectangle"""
         return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
