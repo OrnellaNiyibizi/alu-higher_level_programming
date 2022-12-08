@@ -20,12 +20,12 @@ class Base:
 
     @property
     def id(self):
-        """Documenting"""
+        """Doc"""
         return self.__id
 
     @id.setter
     def id(self, value):
-        """Documenting"""
+        """Doc"""
         if value is None:
             self.__id = self.__nb_objects
         else:
@@ -33,7 +33,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Documenting"""
+        """Doc"""
         if list_dictionaries is None or \
                 len(list_dictionaries) == 0:
             return "[]"
@@ -42,7 +42,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """defines the JSON string representation
+        """writes the JSON string representation
         of list_objs to a file
         """
         list_objs_dict = []
@@ -56,8 +56,8 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """list of the JSON string representation json_string"""
-        if json_string is Noine or \
+        """return  list of the JSON string representation json_string"""
+        if json_string is None or \
                 len(json_string) == 0:
             return list()
         else:
@@ -65,22 +65,23 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """an instance with all attributes already set"""
+        """ return an instance with all attributes already set"""
         if cls.__name__ == "Rectangle":
             dummy_instance = cls(4, 3)
         if cls.__name__ == "Square":
-            dummy_iinstance = cls(4)
+            dummy_instance = cls(4)
         dummy_instance.update(**dictionary)
         return dummy_instance
 
     @classmethod
     def load_from_file(cls):
-        """a list of instances from file"""
+        """returns a list of instances from file"""
         try:
             with open(cls.__name__ + ".json", "r") as file:
                 serialized_content = file.read()
         except FileNotFoundError:
             return list()
+
         deserialized_content = cls.from_json_string(serialized_content)
 
         instances_list = []
