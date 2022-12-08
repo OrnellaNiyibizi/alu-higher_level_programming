@@ -95,6 +95,7 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}" \
             .format(self.id, self.x, self.y, self.width, self.height)
     
+    
   def update(self, *args, **kwargs):
         """assigns an argument"""
         if len(args) != 0:
