@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+usr/bin/python3
 """Rectangle class inheriting"""
 
 
@@ -94,7 +94,7 @@ class Rectangle(Base):
         """ [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
         return "[Rectangle] ({}) {}/{} - {}/{}" \
             .format(self.id, self.x, self.y, self.width, self.height)
-            
+
     def update(self, *args, **kwargs):
         """gives an argument"""
         if len(args) != 0:
