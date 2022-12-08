@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Inheriting rectangle class from Base"""
+"""Rectangle class inheriting"""
 
 
 from models.base import Base
@@ -30,7 +30,7 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        """Set width"""
+        """set width"""
         if type(value) != int:
             raise TypeError("width has to be an integer")
         if value <= 0:
@@ -84,19 +84,20 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        """define the rectangle with the character #"""
+        """the rectangle with the character #"""
         for i in range(self.y):
             print()
         for i in range(self.height):
             print(' ' * self.x + '#' * self.width)
 
     def __str__(self):
-        """define [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
+        """ [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
         return "[Rectangle] ({}) {}/{} - {}/{}" \
             .format(self.id, self.x, self.y, self.width, self.height)
+    
 
     def update(self, *args, **kwargs):
-        """give an argument"""
+        """gives an argument"""
         if len(args) != 0:
             try:
                 self.id = args[0]
@@ -115,7 +116,7 @@ class Rectangle(Base):
             self.x = kwargs["x"] if "x" in kwargs else self.x
             self.y = kwargs["y"] if "y" in kwargs else self.y
 
-     def to_dictionary(self):
+    def to_dictionary(self):
         """the dictionary representation of a Rectangle"""
         return {
             'id': self.id,
