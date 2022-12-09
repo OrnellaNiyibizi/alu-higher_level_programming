@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Square test"""
+"""Test for Square"""
 
 import os
 import unittest
@@ -10,13 +10,11 @@ from models.base import Base
 from models.square import Square
 
 
-
-
 class TestSquare(unittest.TestCase):
-    """class square test"""
+    """Test for class Square"""
 
     def test_instance(self):
-        """Documenting"""
+        """Test the functions in square"""
         s = Square(1)
         s1 = Square(1, 2)
         s2 = Square(1, 2, 3)
@@ -25,37 +23,37 @@ class TestSquare(unittest.TestCase):
 
         self.assertEqual(s0.id, 4)
 
-        with self.assertRaisesRegex(ValueError, "width has to be > 0"):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s9 = Square(-1, 2)
 
-        with self.assertRaisesRegex(ValueError, "x has to be >= 0"):
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             s10 = Square(1, -2)
 
-        with self.assertRaisesRegex(ValueError, "width has to be > 0"):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s11 = Square(0, 2)
 
-        with self.assertRaisesRegex(ValueError, "y has to be >= 0"):
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             s13 = Square(1, 2, -3)
 
-        with self.assertRaisesRegex(ValueError, "width has to be > 0"):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s = Square(0)
 
-        with self.assertRaisesRegex(TypeError, "width has to be an integer"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             s4 = Square("1")
 
-        with self.assertRaisesRegex(TypeError, "x has to be an integer"):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             s5 = Square(1, "2")
 
-        with self.assertRaisesRegex(TypeError, "y has to be an integer"):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             s6 = Square(1, 2, "3")
 
     def test_area(self):
-        """Documenting"""
+        """Test the functions in square"""
         s1 = Square(2)
         self.assertEqual(s1.area(), 4)
 
     def test__str__(self):
-        """Documenting"""
+        """Test the functions in square"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         with patch("sys.stdout", new=StringIO()) as fake_out:
@@ -64,7 +62,7 @@ class TestSquare(unittest.TestCase):
                              "[Square] (1) 0/0 - 2\n")
 
     def test_display(self):
-        """Documenting"""
+        """Test the functions in square"""
         s1 = Square(2)
         s2 = Square(2, 2, 3)
         with patch("sys.stdout", new=StringIO()) as fake_out:
@@ -77,14 +75,14 @@ class TestSquare(unittest.TestCase):
                              "\n\n\n  ##\n  ##\n")
 
     def test_to_dictionary(self):
-        """Documenting"""
+        """Test the functions in square"""
         Base._Base__nb_objects = 0
         s1 = Square(4)
         self.assertEqual(s1.to_dictionary(),
                          {'id': 1, 'size': 4, 'x': 0, 'y': 0})
 
     def test_update(self):
-        """Documenting"""
+        """Test the functions in square"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         s1.update()
@@ -127,7 +125,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.y, 3)
 
     def test_create(self):
-        """Documenting"""
+        """Test the functions in square"""
 
         s1 = Square.create(**{'id': 89})
         self.assertEqual(s1.id, 89)
@@ -155,10 +153,8 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.x, 2)
         self.assertEqual(s1.y, 3)
 
-
-
     def test_save_to_file(self):
-        """Documenting"""
+        """Test the functions in square"""
         Base._Base__nb_objects = 0
 
         Square.save_to_file(None)
@@ -176,8 +172,6 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(file.read(),
                              '[{"id": 1, "size": 1, "x": 0, "y": 0}]')
 
-
-
     def test_save_to_file_empty(self):
         Square.save_to_file([])
         self.assertTrue(os.path.isfile("Square.json"))
@@ -185,10 +179,8 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(file.read(), "[]")
             self.assertEqual(type(file.read()), str)
 
-
-
     def test_load_from_file(self):
-        """Documenting"""
+        """Test the functions in square"""
         if os.path.exists("Square.json"):
             os.remove("Square.json")
 
@@ -196,4 +188,4 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([Square(2)])
         from_file = Square.load_from_file()
         self.assertEqual(type(from_file), list)
-        self.assertEqual(from_file[0].size, 2)i
+        self.assertEqual(from_file[0].size, 2)
