@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""base test case"""
+"""base class unit test"""
+
 
 import os
-import unittest
-
+from unittest import TestCase
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
 
-class TestBase(unittest.TestCase):
-    """base test class"""
+class TestBase(TestCase):
+    """Base class in models testing"""
 
-    def test_basic(self):
-        """Documenting"""
+    def test_ba(self):
+        """starting point of creation of Base testing"""
         base = Base()
         base_1 = Base()
         base_89 = Base(89)
@@ -21,33 +21,19 @@ class TestBase(unittest.TestCase):
         self.assertEqual(base_1.id, 2)
         self.assertEqual(base_89.id, 89)
 
-
     def test_to_json_string(self):
-        """Documenting"""
+        """convert of lists to dicts testing"""
         self.assertEqual(Base.to_json_string(None), "[]")
-        self.assertEqual(Base.to_json_string([]), "[]")
         self.assertEqual(Base.to_json_string([{'id': 12}]), '[{"id": 12}]')
         self.assertEqual(type(Base.to_json_string([{'id': 12}])), str)
-
-
-    def test_from_json_string(self):
-        """Documenting"""
-        self.assertEqual(Base.from_json_string(None), [])
-        self.assertEqual(Base.from_json_string("[]"), [])
-        self.assertEqual(Base.from_json_string('[{"id": 89}]'), [{'id': 89}])
-        self.assertEqual(type(Base.from_json_string('[{"id": 89}]')), list)
-        
-
-
+        self.assertEqual(Base.to_json_string([]), "[]")
 
     def test_save_to_file(self):
-        """Documenting"""
+        """the file saves list objects to  file testing"""
         Base._Base__nb_objects = 0
-
         Square.save_to_file(None)
 
         self.assertTrue(os.path.isfile("Square.json"))
-
         with open("Square.json") as file:
             self.assertEqual(file.read(), '[]')
 
@@ -64,7 +50,7 @@ class TestBase(unittest.TestCase):
 
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.isfile("Rectangle.json"))
-        
+
         with open("Rectangle.json") as file:
             self.assertEqual(file.read(), '[]')
 
@@ -73,8 +59,15 @@ class TestBase(unittest.TestCase):
             self.assertEqual(file.read(), '[]')
             self.assertEqual(type(file.read()), str)
 
-        Rectangle.save_to_file([Rectangle(1, 2)])
+        Rectangle.save_to_file([Rectangle(2, 3)])
         with open("Rectangle.json") as file:
             self.assertEqual(file.read(),
-                             '[{"id": 1, "width": 1, '
-                             '"height": 2, "x": 0, "y": 0}]')i
+                             '[{"id": 1, "width": 2, '
+                             '"height": 3, "x": 0, "y": 0}]')
+
+    def test_from_json_string(self):
+        """Testing"""
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string('[{"id": 89}]'), [{'id': 89}])
+        self.assertEqual(type(Base.from_json_string('[{"id": 89}]')), list)
+        self.assertEqual(Base.from_json_string("[]"), [])
