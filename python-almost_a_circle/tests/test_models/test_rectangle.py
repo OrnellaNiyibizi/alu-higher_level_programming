@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test the REctangle class"""
+"""rectangle class testing"""
 
 import unittest
 from io import StringIO
@@ -14,7 +14,7 @@ class TestRectangle(unittest.TestCase):
     """Test class for Base"""
 
     def test_instance(self):
-        """Doc"""
+        """Documenting"""
         Base._Base__nb_objects = 0
         rect1 = Rectangle(1, 2)
         rect2 = Rectangle(1, 2, 3)
@@ -55,8 +55,8 @@ class TestRectangle(unittest.TestCase):
 
     def test_area(self):
         """Test for the Area"""
-        reactnage = Rectangle(5, 3)
-        self.assertEqual(reactnage.area(), 15)
+        recta = Rectangle(5, 3)
+        self.assertEqual(recta.area(), 15)
 
     def test__str__(self):
         """Test for the string repo of the rectange"""
@@ -68,32 +68,32 @@ class TestRectangle(unittest.TestCase):
                              "[Rectangle] (1) 0/0 - 5/3\n")
 
     def test_display(self):
-        """Doc"""
+        """Documenting"""
         rect1 = Rectangle(4, 2)
         rect2 = Rectangle(4, 2, 3)
         rect3 = Rectangle(4, 2, 3, 2)
-        with patch("sys.stdout", new=StringIO()) as dummy:
+        with patch("sys.stdout", new=StringIO()) as nene:
             rect1.display()
-            self.assertEqual(dummy.getvalue(),
+            self.assertEqual(nene.getvalue(),
                              "####\n####\n")
-        with patch("sys.stdout", new=StringIO()) as dummy:
+        with patch("sys.stdout", new=StringIO()) as nene:
             rect2.display()
-            self.assertEqual(dummy.getvalue(),
+            self.assertEqual(nene.getvalue(),
                              "   ####\n   ####\n")
-        with patch("sys.stdout", new=StringIO()) as dummy:
+        with patch("sys.stdout", new=StringIO()) as nene:
             rect3.display()
-            self.assertEqual(dummy.getvalue(),
+            self.assertEqual(nene.getvalue(),
                              "\n\n   ####\n   ####\n")
 
     def test_to_dictionary(self):
-        """Test for the dic """
+        """Distionary testing """
         Base._Base__nb_objects = 0
         r1 = Rectangle(4, 2)
         self.assertEqual(r1.to_dictionary(),
                          {'id': 1, 'width': 4, 'height': 2, 'x': 0, 'y': 0})
 
     def test_update(self):
-        """test for the string"""
+        """string testing"""
         Base._Base__nb_objects = 0
         r1 = Rectangle(4, 2)
 
@@ -151,7 +151,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.y, 4)
 
     def test_create(self):
-        """Tests to creatr a new rectangle"""
+        """create a new rectangle"""
 
         r1 = Rectangle.create(**{'id': 89})
         self.assertEqual(r1.id, 89)
