@@ -209,7 +209,7 @@ class TestRectangle(unittest.TestCase):
         self.assertTrue(os.path.isfile("Rectangle.json"))
         with open("Rectangle.json") as file:
             self.assertEqual(file.read(), "[]")
-            self.assertEqual(type(file.read()), str)        
+            self.assertEqual(type(file.read()), str)
 
     def test_load_from_file(self):
         """Documenting"""
