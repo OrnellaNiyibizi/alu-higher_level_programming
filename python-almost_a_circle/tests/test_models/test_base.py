@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit testing for the base class"""
+"""the base class' unit testing"""
 
 
 import os
