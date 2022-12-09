@@ -1,55 +1,59 @@
 #!/usr/bin/python3
-"""Class Square that inherit from Rectangle"""
-
+""" just another module"""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """"
-            Class Square inheriting Rectangle
-            Attr :
-                    id: number
-                    size: number
-                    x: number
-                    y: number
-        """
-
+    """just a module"""
     def __init__(self, size, x=0, y=0, id=None):
+        """just using the super class"""
         super().__init__(size, size, x, y, id)
+
+    def __str__(self):
+        """ just string form """
+        d = self.id
+        b = self.height
+        c = self.x
+        e = self.y
+        return ("[Square] ({}) {}/{} - {}".format(d, c, e, b))
 
     @property
     def size(self):
-        """Size getter"""
+        """just size function"""
         return self.width
 
     @size.setter
     def size(self, value):
-        """Size setter"""
+        """setter for size"""
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
         self.width = value
         self.height = value
 
-    def __str__(self):
-        """return [Square] (<id>) <x>/<y> - <size>"""
-        return "[Square] ({}) {}/{} - {}" \
-            .format(self.id, self.x, self.y, self.size)
-
+        # Methods
     def update(self, *args, **kwargs):
-        """assigns attributes"""
-        if len(args) != 0:
-            try:
-                self.id = args[0]
-                self.size = args[1]
-                self.x = args[2]
-                self.y = args[3]
-            except IndexError:
-                pass
-        elif len(kwargs) != 0:
-            self.id = kwargs["id"] if "id" in kwargs else self.id
-            self.size = kwargs["size"] if "size" in kwargs \
-                else self.size
-            self.x = kwargs["x"] if "x" in kwargs else self.x
-            self.y = kwargs["y"] if "y" in kwargs else self.y
+        """Updates the Square attributes
+        """
+        dct = {}
+        if args is not None and len(args) > 0:
+            keys = ['id', 'size', 'x', 'y']
+            for i in range(len(args) if len(args) <= 4 else 4):
+                dct[keys[i]] = args[i]
+        else:
+            dct = kwargs
+
+        if len(dct) > 0:
+            for key, value in dct.items():
+                if key == 'id' and value is None:
+                    self.__init__(self.size, self.x, self.y)
+                else:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """returns the dictionary representation of a Rectangle"""
+        """
+        just square dictionary
+        represeentation
+        """
         return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
