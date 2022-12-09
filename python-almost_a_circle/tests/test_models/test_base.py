@@ -36,7 +36,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(Base.from_json_string("[]"), [])
         self.assertEqual(Base.from_json_string('[{"id": 89}]'), [{'id': 89}])
         self.assertEqual(type(Base.from_json_string('[{"id": 89}]')), list)
-        
 
 
 
@@ -64,7 +63,7 @@ class TestBase(unittest.TestCase):
 
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.isfile("Rectangle.json"))
-        
+
         with open("Rectangle.json") as file:
             self.assertEqual(file.read(), '[]')
 
@@ -77,4 +76,4 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json") as file:
             self.assertEqual(file.read(),
                              '[{"id": 1, "width": 1, '
-                             '"height": 2, "x": 0, "y": 0}]')i
+                             '"height": 2, "x": 0, "y": 0}]')
