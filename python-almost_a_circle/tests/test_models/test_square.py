@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test for Square"""
+"""Square Testing"""
 
 import os
 import unittest
@@ -48,41 +48,41 @@ class TestSquare(unittest.TestCase):
             s6 = Square(1, 2, "3")
 
     def test_area(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         s1 = Square(2)
         self.assertEqual(s1.area(), 4)
 
     def test__str__(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
-        with patch("sys.stdout", new=StringIO()) as fake_out:
+        with patch("sys.stdout", new=StringIO()) as get_in:
             print(s1)
-            self.assertEqual(fake_out.getvalue(),
+            self.assertEqual(get_out.getvalue(),
                              "[Square] (1) 0/0 - 2\n")
 
     def test_display(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         s1 = Square(2)
         s2 = Square(2, 2, 3)
-        with patch("sys.stdout", new=StringIO()) as fake_out:
+        with patch("sys.stdout", new=StringIO()) as get_in:
             s1.display()
-            self.assertEqual(fake_out.getvalue(),
+            self.assertEqual(get_in.getvalue(),
                              "##\n##\n")
-        with patch("sys.stdout", new=StringIO()) as fake_out:
+        with patch("sys.stdout", new=StringIO()) as get_in:
             s2.display()
-            self.assertEqual(fake_out.getvalue(),
+            self.assertEqual(get_in.getvalue(),
                              "\n\n\n  ##\n  ##\n")
 
     def test_to_dictionary(self):
-        """Test the functions in square"""
+        """the functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(4)
         self.assertEqual(s1.to_dictionary(),
                          {'id': 1, 'size': 4, 'x': 0, 'y': 0})
 
     def test_update(self):
-        """Test the functions in square"""
+        """the functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         s1.update()
@@ -125,7 +125,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.y, 3)
 
     def test_create(self):
-        """Test the functions in square"""
+        """functions in square testing"""
 
         s1 = Square.create(**{'id': 89})
         self.assertEqual(s1.id, 89)
@@ -154,7 +154,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.y, 3)
 
     def test_save_to_file(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         Base._Base__nb_objects = 0
 
         Square.save_to_file(None)
@@ -180,7 +180,7 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(type(file.read()), str)
 
     def test_load_from_file(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         if os.path.exists("Square.json"):
             os.remove("Square.json")
 
