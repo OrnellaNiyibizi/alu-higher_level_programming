@@ -2,6 +2,7 @@
 """ module cities in state """
 
 
+
 if __name__ == "__main__":
     from sys import argv
     from model_state import Base, State
