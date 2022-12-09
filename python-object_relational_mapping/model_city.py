@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-'''Using the SQL Alchemy in defining a database class'''
-
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, ForeignKey
-Base = declarative_base()
+"""model city module"""
+from model_state import Base, State
+from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy.orm import relationship
 
 
 class City(Base):
-    '''A class that defines of a table in the sql'''
+    """
+    City class inherits from State
+    """
     __tablename__ = 'cities'
-
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    id = Column('id', Integer, primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)
     state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
