@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Square Testing"""
+"""Square testing"""
 
 import os
 import unittest
@@ -11,10 +11,10 @@ from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
-    """Test for class Square"""
+    """class square testing"""
 
     def test_instance(self):
-        """Test the functions in square"""
+        """functions in square testing"""
         s = Square(1)
         s1 = Square(1, 2)
         s2 = Square(1, 2, 3)
@@ -56,33 +56,33 @@ class TestSquare(unittest.TestCase):
         """functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
-        with patch("sys.stdout", new=StringIO()) as get_in:
+        with patch("sys.stdout", new=StringIO()) as fake_out:
             print(s1)
-            self.assertEqual(get_out.getvalue(),
+            self.assertEqual(fake_out.getvalue(),
                              "[Square] (1) 0/0 - 2\n")
 
     def test_display(self):
         """functions in square testing"""
         s1 = Square(2)
         s2 = Square(2, 2, 3)
-        with patch("sys.stdout", new=StringIO()) as get_in:
+        with patch("sys.stdout", new=StringIO()) as fake_out:
             s1.display()
-            self.assertEqual(get_in.getvalue(),
+            self.assertEqual(fake_out.getvalue(),
                              "##\n##\n")
-        with patch("sys.stdout", new=StringIO()) as get_in:
+        with patch("sys.stdout", new=StringIO()) as fake_out:
             s2.display()
-            self.assertEqual(get_in.getvalue(),
+            self.assertEqual(fake_out.getvalue(),
                              "\n\n\n  ##\n  ##\n")
 
     def test_to_dictionary(self):
-        """the functions in square testing"""
+        """functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(4)
         self.assertEqual(s1.to_dictionary(),
                          {'id': 1, 'size': 4, 'x': 0, 'y': 0})
 
     def test_update(self):
-        """the functions in square testing"""
+        """functions in square testing"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         s1.update()
